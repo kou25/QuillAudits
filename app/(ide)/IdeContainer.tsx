@@ -1,6 +1,7 @@
 "use client";
 import CodeEditor from "@/components/CodeEditor";
 import Folders from "@/components/Folders";
+import Issues from "@/components/Issues";
 import React, { useState } from "react";
 
 export const IdeContainer = () => {
@@ -31,11 +32,7 @@ export const IdeContainer = () => {
         toggleLeft={toggleLeft}
         toggleRight={toggleRight}
       />
-      {rightExapnded && (
-        <div className="p-2 h-full bg-quill-400 rounded-md">
-          count of issues
-        </div>
-      )}
+      {rightExapnded && <Issues />}
     </div>
   );
 };

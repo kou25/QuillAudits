@@ -10,13 +10,13 @@ const page = () => {
   ];
 
   return (
-    <>
+    <div className="h-[calc(100vh - 52px)]">
       <Breadcrumbs paths={paths} />
-      <div className="w-full min-h-[85vh] max-h-[90vh] h-full p-2 bg-quill-300 rounded-sm">
+      <div className="w-full h-[calc(100vh-100px)]  p-2 bg-quill-300 rounded-sm">
         <Toolbar title={"Sample Project"} />
         <IdeContainer />
       </div>
-    </>
+    </div>
   );
 };
 

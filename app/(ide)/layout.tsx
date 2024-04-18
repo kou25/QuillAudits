@@ -37,7 +37,7 @@ export default function RootLayout({
       lang="en"
       className={`${openSans.variable} ${inter.variable} font-sans`}
     >
-      <body className="bg-quill-500">
+      <body className="bg-quill-500 h-screen ">
         <main className="p-3">
           <Header />
           {children}

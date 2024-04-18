@@ -14,7 +14,7 @@ const CodeEditor = ({
   toggleRight: () => void;
 }) => {
   return (
-    <div className="relative p-2 min-h-[75vh] 2xl:min-h-[80vh] h-full col-span-2 bg-quill-400 rounded-md">
+    <div className="relative p-2 h-[calc(100vh-190px)] col-span-2 bg-quill-400 rounded-md ">
       code
       <div
         className={`bg-blue-500  h-5 w-5 absolute -left-2 bottom-5 rounded-sm`}
