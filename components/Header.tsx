@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <header className="flex h-[52px] w-full  justify-between bg-quill-300 rounded-sm">
       <div className="flex justify-between items-center w-full gap-4">
-        <div className="w-[212px] h-full  border-r border-gray-500 flex justify-center items-center">
+        <div className="w-[212px] h-full  border-r border-gray-700 flex justify-center items-center">
           <Image src={Logo} alt="LOGO" width={"24"} height={"28"} />
           <p className="text-white text-lg font-light tracking-wide ml-2">
             QuillShield
@@ -34,7 +34,7 @@ const Header = () => {
             />
           </ul>
         </div>
-        <div className="w-[212px] h-full  border-l border-gray-500 flex  items-center">
+        <div className="w-[212px] h-full  border-l border-gray-700 flex  items-center">
           <Image
             src={Avatar}
             alt="Avatar"
@@ -43,7 +43,7 @@ const Header = () => {
             className={"ml-5"}
           />
           <p className="text-white text-sm font-light  ml-2 mr-4">Johhny Doe</p>
-          <FiChevronDown className="text-white h-6 w-5" />
+          <FiChevronDown className="text-gray-500 h-6 w-5" />
         </div>
       </div>
     </header>
