@@ -5,11 +5,13 @@ import IssueCard from "./IssueCard";
 const CurrentFileIssues = () => {
   return (
     <>
-      <div className="my-4 bg-quill-300 p-2 flex justify-between items-center mx-2">
+      <div className="my-4 bg-quill-300 p-2 flex justify-between items-center mx-2 gap-2">
         <button className="py-2 px-4 w-28  rounded-sm bg-quill-200 text-sm flex-1">
           Current File
         </button>
-        <div className="text-center flex-1 text-gray-500">Full Project</div>
+        <button className=" py-2 px-4 w-28  text-sm text-center flex-1 text-gray-500 hover:bg-quill-200 hover:text-white">
+          Full Project
+        </button>
       </div>
       <div className="flex-1 h-full px-2 overflow-scroll">
         {listofIssues.map((item) => (

@@ -16,6 +16,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        "quill-100": "#1E232B",
         "quill-200": "#007AFF",
         "quill-300": "#191D24",
         "quill-400": "#12161A",

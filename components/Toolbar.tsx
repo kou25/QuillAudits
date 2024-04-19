@@ -14,7 +14,7 @@ const Toolbar = ({ title }: { title: string }) => {
           Audit Now
         </button>
         <div className="relative">
-          <button className="py-2 px-4 w-28 text-blue-500 rounded-sm bg-[#007AFF29] text-sm">
+          <button className="py-2 px-4 w-28 text-blue-500 rounded-sm bg-[#007AFF29] hover:bg-white text-sm">
             Options
           </button>
           <div className="absolute rounded-full p-1 w-2 h-2 bg-red-500 top-0 -right-1" />
