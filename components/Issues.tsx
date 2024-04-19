@@ -31,7 +31,7 @@ const Issues = ({ isVisible }: { isVisible: folderInterface | null }) => {
         <Link
           href={"/"}
           className={`text-gray-300
-           text-sm font-light`}
+           text-xs font-light`}
         >
           Count of Issues {issueSearchParam ? "/" : ""}
         </Link>
@@ -44,7 +44,7 @@ const Issues = ({ isVisible }: { isVisible: folderInterface | null }) => {
                   ? "text-gray-300 font-light"
                   : "text-white font-medium"
               }
-          text-sm `}
+          text-xs `}
             >
               {" "}
               {findIssue.text} {detailIdSearchParam ? "/" : ""}
@@ -56,7 +56,7 @@ const Issues = ({ isVisible }: { isVisible: folderInterface | null }) => {
                 "/?issue=" + findIssue.id + "&detailId=" + findDetatilIssue?.id
               }
               className={`ml-1 text-white
-          text-sm font-medium`}
+          text-xs font-medium`}
             >
               {" Issue # "}
               {(findDetatilIssue?.id || 0) + 1}
@@ -89,7 +89,7 @@ const Issues = ({ isVisible }: { isVisible: folderInterface | null }) => {
             {findDetatilIssue ? (
               <>
                 <IoInformationCircle className="w-5 h-5 text-white" />
-                <p className="text-gray-300 text-sm font-light">
+                <p className="text-gray-300 text-xs font-light">
                   Changes done in this code can be undone
                 </p>
               </>
