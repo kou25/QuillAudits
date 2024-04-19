@@ -35,32 +35,34 @@ const Issues = ({ isVisible }: { isVisible: folderInterface | null }) => {
         >
           Count of Issues {issueSearchParam ? "/" : ""}
         </Link>
-        {findIssue ? (
-          <Link
-            href={"/?issue=" + findIssue.id}
-            className={`ml-1 ${
-              findDetatilIssue
-                ? "text-gray-300 font-light"
-                : "text-white font-medium"
-            }
+        <>
+          {findIssue ? (
+            <Link
+              href={"/?issue=" + findIssue.id}
+              className={`ml-1 ${
+                findDetatilIssue
+                  ? "text-gray-300 font-light"
+                  : "text-white font-medium"
+              }
           text-sm `}
-          >
-            {" "}
-            {findIssue.text} {detailIdSearchParam ? "/" : ""}
-          </Link>
-        ) : null}
-        {findIssue ? (
-          <Link
-            href={
-              "/?issue=" + findIssue.id + "&detailId=" + findDetatilIssue?.id
-            }
-            className={`ml-1 text-white
+            >
+              {" "}
+              {findIssue.text} {detailIdSearchParam ? "/" : ""}
+            </Link>
+          ) : null}
+          {findIssue && findDetatilIssue ? (
+            <Link
+              href={
+                "/?issue=" + findIssue.id + "&detailId=" + findDetatilIssue?.id
+              }
+              className={`ml-1 text-white
           text-sm font-medium`}
-          >
-            {" Issue # "}
-            {(findDetatilIssue?.id || 0) + 1}
-          </Link>
-        ) : null}
+            >
+              {" Issue # "}
+              {(findDetatilIssue?.id || 0) + 1}
+            </Link>
+          ) : null}
+        </>
       </div>
       {isVisible ? (
         <div className="flex flex-col  h-full">

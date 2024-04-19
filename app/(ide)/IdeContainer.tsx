@@ -3,14 +3,23 @@ import CodeEditor from "@/components/CodeEditor";
 import Folders from "@/components/Folders";
 import Issues from "@/components/Issues";
 import { folderInterface } from "@/lib/folders";
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 export const IdeContainer = () => {
   const [leftExapnded, setLeftExpanded] = useState<boolean>(true);
   const [rightExapnded, setRightExpanded] = useState<boolean>(true);
   const [selectedFiles, setSelectedFiles] = useState<folderInterface[]>([]);
   const [selectCurrentFile, setSelectCurrentFile] =
     useState<folderInterface | null>(null);
+  const router = useRouter();
+  const [redirected, setRedirected] = useState(false);
+
+  useEffect(() => {
+    if (!redirected) {
+      router.push("/", { scroll: false });
+      setRedirected(true);
+    }
+  }, [redirected, router]);
 
   const toggleLeft = () => {
     setLeftExpanded(!leftExapnded);
