@@ -11,11 +11,11 @@ import { AiFillCaretRight } from "react-icons/ai";
 const Folder = ({
   explorer,
   handleIdSelect,
-  selectId
+  selectCurrentFile
 }: {
   explorer: folderInterface;
-  handleIdSelect: (id: string) => void;
-  selectId: string | null;
+  handleIdSelect: (file: folderInterface) => void;
+  selectCurrentFile: folderInterface | null;
 }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   if (explorer.isFolder) {
@@ -52,7 +52,7 @@ const Folder = ({
               key={exp.id}
               explorer={exp}
               handleIdSelect={handleIdSelect}
-              selectId={selectId}
+              selectCurrentFile={selectCurrentFile}
             />
           ))}
         </div>
@@ -62,16 +62,18 @@ const Folder = ({
     return (
       <div
         className={`my-2 pl-2 flex text-sm cursor-pointer ${
-          selectId === explorer.id
+          selectCurrentFile?.id === explorer.id
             ? "text-blue-600 font-medium"
             : "text-gray-300 font-normal"
         }`}
         onClick={() => {
-          handleIdSelect(explorer.id);
+          handleIdSelect(explorer);
         }}
       >
         <Image
-          src={selectId === explorer.id ? OpenedFileImage : FileImage}
+          src={
+            selectCurrentFile?.id === explorer.id ? OpenedFileImage : FileImage
+          }
           alt="folder"
           width={"12"}
           height={"16"}

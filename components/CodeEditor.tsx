@@ -3,65 +3,77 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import Collapse from "../public/collapse.png";
 import Editor, { Monaco } from "@monaco-editor/react";
-import { IoClose } from "react-icons/io5";
 import EditorBreadcrumps from "./EditorBreadcrumps";
+import { folderInterface } from "@/lib/folders";
+import { ThemeProvider } from "../utils/theme";
 
 const CodeEditor = ({
+  selectCurrentFile,
   leftExapnded,
   rightExapnded,
   toggleLeft,
-  toggleRight
+  toggleRight,
+  selectedFiles,
+  handleRemove,
+  handleSelect
 }: {
+  selectCurrentFile: folderInterface | null;
   leftExapnded: boolean;
   rightExapnded: boolean;
   toggleLeft: () => void;
   toggleRight: () => void;
+  selectedFiles: folderInterface[];
+  handleRemove: (id: string) => void;
+  handleSelect: (file: folderInterface) => void;
 }) => {
   const editorRef = useRef<Monaco | null>(null);
 
   function handleEditorWillMount(monaco: Monaco) {
-    // here is the monaco instance
-    // do something before editor is mounted
-    monaco.editor.defineTheme("dark", {
-      base: "vs",
-      inherit: true,
-      rules: [],
-      colors: {
-        "editor.foreground": "#F8F8F8",
-        "editor.background": "#12161A",
-        "editor.selectionBackground": "#253B76",
-        "editor.lineHighlightBackground": "#FFFFFF0F",
-        "editorCursor.foreground": "#FFFFFFA6",
-        "editorWhitespace.foreground": "#FFFFFF40"
-      }
-    });
+    //@ts-ignore
+    monaco.editor.defineTheme("dark", ThemeProvider);
   }
 
   useEffect(() => {
-    //@ts-ignore
-    editorRef.current?.focus();
-  }, []);
+    if (selectCurrentFile) {
+      //@ts-ignore
+      editorRef.current?.focus();
+    }
+  }, [selectCurrentFile, selectCurrentFile?.id]);
 
   return (
     <div className="h-[calc(100vh-190px)] col-span-2 rounded-md flex flex-col">
       <div className="h-8 w-full bg-quill-100 ">
         <div className="w-full overflow-x-scroll flex rounded-t-md">
-          <EditorBreadcrumps fileName="Example file 1" active={true} />
-          <EditorBreadcrumps fileName="Example file 2" active={false} />
+          {selectedFiles.map((file) => (
+            <EditorBreadcrumps
+              key={file.id}
+              fileName={file?.name || ""}
+              active={file.id === selectCurrentFile?.id}
+              handleRemove={() => handleRemove(file.id)}
+              handleSelect={() => handleSelect(file)}
+            />
+          ))}
         </div>
       </div>
 
       <div className="relative p-2 h-auto  bg-quill-400  flex-1">
-        <Editor
-          theme="dark"
-          width="100%"
-          height="100%"
-          defaultLanguage="javascript"
-          beforeMount={handleEditorWillMount}
-          defaultValue="// some comment"
-          //@ts-ignore
-          onMount={(editor) => (editorRef.current = editor)}
-        />
+        {selectedFiles.length > 0 ? (
+          <Editor
+            theme="dark"
+            width="100%"
+            height="100%"
+            defaultLanguage="javascript"
+            path={selectCurrentFile?.name}
+            beforeMount={handleEditorWillMount}
+            defaultValue={selectCurrentFile?.code}
+            //@ts-ignore
+            onMount={(editor) => (editorRef.current = editor)}
+          />
+        ) : (
+          <div className="flex justify-center items-center w-full h-full text-gray-500">
+            No file selected
+          </div>
+        )}
         <div
           className={`bg-blue-500  h-5 w-5 absolute -left-2 bottom-5 rounded-sm`}
           onClick={toggleLeft}

@@ -3,10 +3,14 @@ import { IoClose } from "react-icons/io5";
 
 const EditorBreadcrumps = ({
   fileName,
-  active
+  active,
+  handleRemove,
+  handleSelect
 }: {
   fileName: string;
   active: boolean;
+  handleRemove: () => void;
+  handleSelect: () => void;
 }) => {
   return (
     <div
@@ -15,9 +19,16 @@ const EditorBreadcrumps = ({
           ? "bg-quill-200 text-white"
           : "text-[#5D677D] border-r border-gray-700"
       }   gap-2 rounded-t-md`}
+      onClick={handleSelect}
     >
       <p className="text-xs">{fileName}</p>
-      <IoClose className="w-4 h-4 cursor-pointer" />
+      <IoClose
+        className="w-4 h-4 cursor-pointer"
+        onClick={(event) => {
+          event.stopPropagation();
+          handleRemove();
+        }}
+      />
     </div>
   );
 };
