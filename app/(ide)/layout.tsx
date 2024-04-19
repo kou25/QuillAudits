@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "../globals.css";
 import Header from "@/components/Header";
 import { Inter, Open_Sans } from "next/font/google";
+import { Suspense } from "react";
 
 export const viewport = {
   width: "device-width",
@@ -40,7 +41,7 @@ export default function RootLayout({
       <body className="bg-quill-500 h-screen ">
         <main className="p-3">
           <Header />
-          {children}
+          <Suspense>{children}</Suspense>
         </main>
       </body>
     </html>
